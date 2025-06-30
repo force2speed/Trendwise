@@ -95,17 +95,20 @@ Return everything clearly labeled.`,
       .replace(/\s+/g, "-");
 
     // 🧠 Save to DB
-    const article = await Article.create({
-      title,
-      slug,
-      meta: {
-        title: metaTitle,
-        description: metaDescription,
-        ogImage: media[0] || "",
-      },
-      content: cleanedContent,
-      media,
-    });
+const article = new Article({
+  
+  title,
+  slug,
+  meta: {
+    title: metaTitle,
+    description: metaDescription,
+    ogImage: media[0] || "",
+  },
+  content: cleanedContent,
+  media,
+});
+
+await article.save();
 
     return NextResponse.json(article, { status: 201 });
   } catch (err) {

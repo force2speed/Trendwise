@@ -17,7 +17,6 @@ export default function Comments({
   articleId,
 }: {
   articleId: string;
-  articleSlug: string;
 })  {
   
   const [comments, setComments] = useState<Comment[]>([]);

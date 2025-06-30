@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import dayjs from "dayjs"; // ✅ Import dayjs
 
 export default function ClientArticleList({ articles }: { articles: any[] }) {
   const [search, setSearch] = useState("");
@@ -35,9 +36,11 @@ export default function ClientArticleList({ articles }: { articles: any[] }) {
                 </h2>
               </Link>
               <p className="text-sm text-gray-500 mb-1">
-                {new Date(article.createdAt).toLocaleDateString()}
+                {dayjs(article.createdAt).format("YYYY-MM-DD")} {/* ✅ Hydration-safe */}
               </p>
-              <p className="text-gray-700">{article.meta?.description || "No description provided."}</p>
+              <p className="text-gray-700">
+                {article.meta?.description || "No description provided."}
+              </p>
             </li>
           ))}
         </ul>
