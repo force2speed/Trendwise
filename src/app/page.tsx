@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
 import connectDB from "@/lib/mongodb";
 import Article from "@/models/Article";
-import ClientArticleList from "@/components/clientArticleList";
+import ClientArticleList from "@/app/components/clientArticleList";
 import "./globals.css";
 import Image from "next/image";
 

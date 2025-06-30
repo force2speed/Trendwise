@@ -1,17 +1,8 @@
-// types/next-auth.d.ts
+// src/app/api/auth/[...nextauth]/route.ts
+import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+import { authOptions } from "./authOptions"; // extracted for reuse
 
+const handler = NextAuth(authOptions);
 
-declare module "next-auth" {
-  interface Session {
-    user: {
-      name?: string | null;
-      email?: string | null;
-      image?: string | null;
-      id: string; // 👈 Add the custom `id` property
-    };
-  }
-
-  interface User {
-    id: string;
-  }
-}
+export { handler as GET, handler as POST };

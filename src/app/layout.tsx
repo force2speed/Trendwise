@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Link from "next/link";
-import SessionWrapper from "@/components/SessionWrapper";
+import SessionWrapper from "@/app/components/SessionWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 

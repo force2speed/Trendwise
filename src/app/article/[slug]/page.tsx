@@ -3,7 +3,7 @@ import Article from "@/models/Article";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
-import Comments from "@/components/comment";
+import Comments from "@/app/components/comment";
 
 type ArticleType = {
   _id: string;
