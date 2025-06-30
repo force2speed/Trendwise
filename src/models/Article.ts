@@ -1,5 +1,4 @@
 import  { Schema, Document, models, model } from "mongoose";
-import { Types } from "mongoose";
 interface ArticleType extends Document {
   title: string;
   slug: string;
