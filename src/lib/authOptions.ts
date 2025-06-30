@@ -10,4 +10,23 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+
+  pages: {
+    signIn: "/login", // custom login page
+  },
+
+  callbacks: {
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.sub;
+      }
+      return session;
+    },
+    async jwt({ token }) {
+      return token;
+    },
+    async redirect({ url, baseUrl }) {
+      return baseUrl; // redirect to home after login
+    },
+  },
 };
