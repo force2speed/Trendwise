@@ -3,8 +3,16 @@
 import { useState } from "react";
 import Link from "next/link";
 import dayjs from "dayjs"; // ✅ Import dayjs
-
-export default function ClientArticleList({ articles }: { articles: any[] }) {
+type Article = {
+  _id: string;
+  slug: string;
+  title: string;
+  meta: {
+    description: string;
+  };
+  createdAt: string | Date;
+};
+export default function ClientArticleList({ articles }: { articles: Article[] }) {
   const [search, setSearch] = useState("");
 
   const filtered = articles.filter((article) =>

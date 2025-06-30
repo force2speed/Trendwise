@@ -4,6 +4,7 @@ import connectDB from "@/lib/mongodb";
 import Article from "@/models/Article";
 import ClientArticleList from "@/components/clientArticleList";
 import "./globals.css";
+import Image from "next/image";
 
 export default async function Homepage() {
   const session = await getServerSession(authOptions);
@@ -17,11 +18,14 @@ export default async function Homepage() {
       {session ? (
         <div className="mb-6">
           <p className="text-lg">Hello, {session.user?.name} 👋</p>
-          <img
-            src={session.user?.image || ""}
-            alt="Profile"
-            className="mx-auto mt-4 rounded-full w-24 h-24 mb-4"
-          />
+          
+<Image
+  src={session.user?.image || "/default.jpg"}
+  alt="Profile"
+  width={96}
+  height={96}
+  className="mx-auto mt-4 rounded-full w-24 h-24 mb-4"
+/>
 
           <form
             action="/api/article"
