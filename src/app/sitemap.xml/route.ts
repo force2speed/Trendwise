@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Article from "@/models/Article";
-
+export const dynamic = 'force-dynamic';
 export async function GET() {
   await connectDB();
   const articles = await Article.find().select("slug").lean();
