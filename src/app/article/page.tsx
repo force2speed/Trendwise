@@ -1,5 +1,6 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/authOptions"; // Import from the shared module, NOT from the route
+
 import connectDB from "@/lib/mongodb";
 import Article from "@/models/Article";
 import Link from "next/link";
