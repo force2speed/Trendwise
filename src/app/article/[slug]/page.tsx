@@ -3,10 +3,10 @@ import Article from "@/models/Article";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
-
 import Comments from "@/components/comment";
+
 type ArticleType = {
-  _id: string,
+  _id: string;
   title: string;
   slug: string;
   content: string;
@@ -19,18 +19,19 @@ type ArticleType = {
   createdAt: string | Date;
 };
 
+// Updated type for params as Promise
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  const { params } = props;
+  // Await the params promise
+  const { slug } = await props.params;
   await connectDB();
 
-  const article = await Article.findOne({ slug: params.slug }).lean() as unknown as ArticleType;
-
+  const article = await Article.findOne({ slug }).lean() as unknown as ArticleType;
   if (!article) return {};
 
   return {
@@ -42,13 +43,12 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   };
 }
 
-
 export default async function ArticlePage(props: Props) {
-  const { params } = props;
+  // Await the params promise
+  const { slug } = await props.params;
   await connectDB();
 
-  const article = await Article.findOne({ slug: params.slug }).lean() as unknown as ArticleType;
-
+  const article = await Article.findOne({ slug }).lean() as unknown as ArticleType;
   if (!article) return notFound();
 
   return (
@@ -80,5 +80,3 @@ export default async function ArticlePage(props: Props) {
     </div>
   );
 }
-
-
