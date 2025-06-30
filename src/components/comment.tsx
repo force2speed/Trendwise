@@ -5,7 +5,7 @@ import { useSession } from "next-auth/react";
 
 type Comment = {
   _id: string;
-  text: string;
+  content: string;
   user: {
     name: string;
     image?: string;
@@ -15,7 +15,6 @@ type Comment = {
 
 export default function Comments({
   articleId,
-  articleSlug,
 }: {
   articleId: string;
   articleSlug: string;
