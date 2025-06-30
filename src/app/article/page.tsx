@@ -5,12 +5,34 @@ import Article from "@/models/Article";
 import Link from "next/link";
 import dayjs from "dayjs";
 import "../globals.css";
+import Image from "next/image";
+interface Article {
+  _id: string;
+  slug: string;
+  title: string;
+  meta: {
+    description: string;
+  };
+  createdAt: string | Date;
+}
+interface ArticleType {
+  _id: string;
+  slug: string;
+  title: string;
+  meta: {
+    title: string;
+    description: string;
+    ogImage: string;
+  };
+  createdAt: string | Date;
+}
+
 
 export default async function Homepage() {
   const session = await getServerSession(authOptions);
 
   await connectDB();
-  const articles = await Article.find().sort({ createdAt: -1 }).lean();
+ const articles = await Article.find().sort({ createdAt: -1 }).lean() as unknown as ArticleType[];
 
   return (
     <main className="p-6 text-center">
@@ -19,11 +41,14 @@ export default async function Homepage() {
       {session ? (
         <div className="mb-6">
           <p className="text-lg">Hello, {session.user?.name} 👋</p>
-          <img
-            src={session.user?.image || ""}
-            alt="Profile"
-            className="mx-auto mt-4 rounded-full w-24 h-24 mb-4"
-          />
+         <Image
+  src={session.user?.image || "/default-avatar.png"}
+  alt="Profile"
+  width={96}
+  height={96}
+  className="mx-auto mt-4 rounded-full w-24 h-24 mb-4"
+  unoptimized // optional: disable optimization for external URLs
+/>
           <form
             action="/api/article"
             method="POST"
@@ -53,10 +78,8 @@ export default async function Homepage() {
         </a>
       )}
 
-      <h1 className="text-4xl font-bold text-blue-600">Hello Tailwind</h1>
-
       <div className="max-w-3xl mx-auto text-left space-y-6 mt-8">
-        {articles.map((article: any) => (
+        {articles.map((article) => (
           <Link href={`/article/${article.slug}`} key={article._id}>
             <div className="p-4 border rounded hover:bg-gray-50 transition">
               <h2 className="text-xl font-semibold">{article.title}</h2>

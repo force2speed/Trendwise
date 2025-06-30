@@ -14,7 +14,6 @@ interface ArticleType extends Document {
 }
 
 const ArticleSchema = new Schema<ArticleType>({
-    _id: Types.ObjectId,
   title: String,
   slug: String,
   meta: {

@@ -12,7 +12,7 @@ export async function GET() {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${articles
     .map(
-      (article: any) => `
+      (article) => `
     <url>
       <loc>${baseUrl}/article/${article.slug}</loc>
       <changefreq>daily</changefreq>

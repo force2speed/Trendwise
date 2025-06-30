@@ -32,7 +32,7 @@ export default function NewArticle() {
         alert(data.error || "Failed to generate article.");
       }
     } catch (err) {
-      alert("An unexpected error occurred.");
+      alert("An unexpected error occurred."+err);
     } finally {
       setLoading(false);
     }
