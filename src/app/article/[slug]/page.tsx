@@ -18,8 +18,6 @@ type ArticleType = {
   media: string[];
   createdAt: string | Date;
 };
-
-// Updated type for params as Promise
 type Props = {
   params: Promise<{
     slug: string;
@@ -27,7 +25,6 @@ type Props = {
 };
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  // Await the params promise
   const { slug } = await props.params;
   await connectDB();
 
@@ -44,7 +41,6 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export default async function ArticlePage(props: Props) {
-  // Await the params promise
   const { slug } = await props.params;
   await connectDB();
 

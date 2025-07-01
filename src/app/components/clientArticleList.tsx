@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import dayjs from "dayjs"; // ✅ Import dayjs
+import dayjs from "dayjs"; 
 type Article = {
   _id: string;
   slug: string;
@@ -44,7 +44,7 @@ export default function ClientArticleList({ articles }: { articles: Article[] })
                 </h2>
               </Link>
               <p className="text-sm text-gray-500 mb-1">
-                {dayjs(article.createdAt).format("YYYY-MM-DD")} {/* ✅ Hydration-safe */}
+                {dayjs(article.createdAt).format("YYYY-MM-DD")}
               </p>
               <p className="text-gray-700">
                 {article.meta?.description || "No description provided."}

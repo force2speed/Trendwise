@@ -5,8 +5,6 @@ import connectDB from "@/lib/mongodb";
 import Comment from "@/models/comment";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/authOptions";
-
-// GET comments for an article
 export async function GET(req: Request) {
   await connectDB();
 

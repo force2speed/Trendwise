@@ -26,7 +26,6 @@ export default function NewArticle() {
       const data = await res.json();
 
       if (res.ok) {
-        // Redirect to the new article page
         router.push(`/article/${data.slug}`);
       } else {
         alert(data.error || "Failed to generate article.");

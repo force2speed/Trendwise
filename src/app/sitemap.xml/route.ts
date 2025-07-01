@@ -6,7 +6,7 @@ export async function GET() {
   await connectDB();
   const articles = await Article.find().select("slug").lean();
 
-  const baseUrl = "https://trendwise.vercel.app"; // replace with your live URL
+  const baseUrl = "https://trendwise.vercel.app"; 
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

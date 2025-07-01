@@ -24,7 +24,7 @@ export default function Comments({
   const { data: session } = useSession();
 
   useEffect(() => {
-  fetch(`/api/comment?articleSlug=${articleId}`) // ✅ articleSlug not articleId
+  fetch(`/api/comment?articleSlug=${articleId}`)
     .then(res => res.json())
     .then(setComments);
 }, [articleId]);

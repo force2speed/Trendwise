@@ -15,7 +15,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={inter.className}>
         <SessionWrapper>
-          {/* 🔗 Navigation Bar */}
           <nav className="bg-gray-800 py-4 px-6 flex justify-between items-center">
             <h1 className="text-xl font-bold">
               <Link href="/">TrendWise</Link>
@@ -26,8 +25,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/article" className="hover:underline">Articles</Link>
             </div>
           </nav>
-
-          {/* 🧾 Main content */}
           <main className="p-6">{children}</main>
         </SessionWrapper>
       </body>

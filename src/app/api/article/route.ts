@@ -29,8 +29,6 @@ export async function POST(req: Request) {
     }
 
     await connectDB();
-
-    // 🔥 Call OpenRouter (Mistral model)
     const openaiRes = await fetch(
       "https://openrouter.ai/api/v1/chat/completions",
       {
@@ -68,33 +66,22 @@ Return everything clearly labeled.`,
     }
 
     const content = data.choices[0].message.content;
-
-    // 🔍 Parse content
-    // 🔍 Extract values from content
     const title = content.match(/Title \(H1\):\s*(.+)/)?.[1]?.trim() || topic;
     const metaTitle = content.match(/Meta Title:\s*(.+)/)?.[1]?.trim() || title;
     const metaDescription =
       content.match(/Meta Description:\s*(.+)/)?.[1]?.trim() || "";
-
-    // ✂️ Remove everything before "Content:" to get clean article body
     const contentStartIndex = content.indexOf("Content:");
     const cleanedContent =
       contentStartIndex !== -1
         ? content.slice(contentStartIndex + "Content:".length).trim()
         : content;
-
-    // 🔗 Get media links
     const media = [...cleanedContent.matchAll(/https?:\/\/\S+/g)].map(
       (m) => m[0]
     );
-
-    // 🐍 Slug
     const slug = title
       .toLowerCase()
       .replace(/[^\w\s-]/g, "")
       .replace(/\s+/g, "-");
-
-    // 🧠 Save to DB
 const article = new Article({
   
   title,

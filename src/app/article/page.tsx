@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/authOptions"; // Import from the shared module, NOT from the route
+import { authOptions } from "@/lib/authOptions"; 
 
 import connectDB from "@/lib/mongodb";
 import Article from "@/models/Article";
@@ -48,7 +48,7 @@ export default async function Homepage() {
   width={96}
   height={96}
   className="mx-auto mt-4 rounded-full w-24 h-24 mb-4"
-  unoptimized // optional: disable optimization for external URLs
+  unoptimized 
 />
           <form
             action="/api/article"

@@ -1,4 +1,3 @@
-// src/lib/mongodb.ts
 
 import mongoose, { Connection } from "mongoose";
 
@@ -13,12 +12,10 @@ interface MongooseGlobal {
   promise: Promise<Connection> | null;
 }
 
-// Extend NodeJS global type
 declare global {
   var mongoose: MongooseGlobal;
 }
 
-// Reuse global object if available
 const globalCache = globalThis as typeof globalThis & { mongoose?: MongooseGlobal };
 
 const cached = globalCache.mongoose ?? {

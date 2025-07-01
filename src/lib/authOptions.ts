@@ -12,7 +12,7 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 
   pages: {
-    signIn: "/login", // custom login page
+    signIn: "/login", 
   },
 
   callbacks: {
@@ -26,7 +26,7 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
     async redirect({ url, baseUrl }) {
-      return baseUrl; // redirect to home after login
+      return baseUrl; 
     },
   },
 };

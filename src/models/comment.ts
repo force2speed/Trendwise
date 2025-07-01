@@ -7,10 +7,10 @@ const CommentSchema = new Schema({
     email: String,
     image: String,
   },
-  content: { type: String, required: true }, // renamed from "comment" to "content"
+  content: { type: String, required: true },
   createdAt: {
     type: Date,
-    default: Date.now, // fixed typo here
+    default: Date.now,
   },
 });
 
